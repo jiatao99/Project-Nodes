@@ -2,7 +2,7 @@
 
 First create mario db
 
-```
+```yml
 ---
 version: "2.1"
 services:
@@ -26,7 +26,7 @@ services:
 
 Reference the previous Docker using `MYSQL_HOST` with `MYSQL_ROOT_PASSWORD`. Supply `MYSQL_DATABASE`, `MYSQL_USER`, `MYSQL_PASSWORD` will automatically create database.
 
-```
+```yml
 ---
 version: "2.1"
 services:
@@ -53,7 +53,7 @@ Reference the previous Docker using `DB_HOST` with `DBL_ROOT_PASSWORD`. Supply `
 28
 
 
-```
+```yml
 ---
 version: "2"
 services:
