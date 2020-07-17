@@ -1,6 +1,6 @@
 ## FileBrowsers
 
-```ymal
+```yml
 ---
 version: "2.1"
 services:
@@ -18,12 +18,12 @@ services:
     ports:
       - 8085:8085
     restart: unless-stopped
-    ```
+```
     
-    ## DoubleCommander
+## DoubleCommander
     
-    ```yml
-    ---
+```yml
+---
 version: "2.1"
 services:
   doublecommander:
