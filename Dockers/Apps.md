@@ -12,6 +12,8 @@ services:
       - PGID=100
       - TZ=America/New-York
       - UMASK_SET=022 #optional
+      - NVIDIA_DRIVER_CAPABILITIES=all 
+      - NVIDIA_VISIBLE_DEVICES=all
     volumes:
       - /srv/6ba672d5-3e36-4f69-a236-810072519436/Shared Videos:/data
       - /srv/0440221b-577e-4a62-9c11-88c157fd3715/AppData/JellyFin:/config
