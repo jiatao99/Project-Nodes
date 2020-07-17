@@ -1,5 +1,6 @@
 ## Calibre
 
+```yml
 ---
 version: "2.1"
 services:
@@ -17,3 +18,4 @@ services:
       - 8088:8080
       - 8081:8081
     restart: unless-stopped
+```
