@@ -46,5 +46,24 @@ services:
         - "2222:22"
     command: {userName}:{Password}:{UID}:{GID}
  ```
- 
- 
+ 4. Code Server
+ ```
+ ---
+version: "2.1"
+services:
+  code-server:
+    image: linuxserver/code-server
+    container_name: code-server
+    environment:
+      - PUID=0.   # use root:root to avoid permission issue
+      - PGID=0
+      - PASSWORD=  ## your strong password to login into the web gui tool
+      - UMASK=022
+      - TZ=America/New-York
+    volumes:
+      - /srv/data/appdata/codeserver:/config
+      - /srv/data:/data
+    ports:
+      - 8430:8443
+    restart: unless-stopped
+```
