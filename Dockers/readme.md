@@ -6,12 +6,19 @@
 2. Configure router for the fixed ip address of the new linux box
 3. ssh into the new Linux box, 
     - https://openmediavault.readthedocs.io/en/5.x/installation/on_debian.html
-    - wget -O - https://github.com/OpenMediaVault-Plugin-Developers/packages/raw/master/install | bash
     - reboot
  4. Update and install the OMV extras
- 5. Install Docker and Portainers
+    - `wget -O - https://github.com/OpenMediaVault-Plugin-Developers/packages/raw/master/install | bash`
+    
+## Use WebGui Tool    
+
+1. General setting: change port and admin password
+2. Network settings -> Interfaces, setup DNS server
+3. Update management -> Update
+4. OMV-Extras -> Install Docker and Portainers
+5. Plugins -> Install plugins: AutoShutdown, Remote Mount, RootFS Share, ResetPermissions, Symbolic Links
  
- ## Setup Dockers
+## Setup Dockers
  
  1. Change main web gui port (do NOT use port 80) and password
  2. Install Nginx Proxy Manager
