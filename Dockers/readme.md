@@ -67,3 +67,16 @@ services:
       - 8430:8443
     restart: unless-stopped
 ```
+
+4. Setup SSH 
+
+```bash
+# generate rsa private, public key pair and save it under .ssh folder (mac/linux)
+ssh-keygen -t rsa
+
+# create remote .ssh folder for user. make sure the user is in group of ssh
+ssh jiatao@192.168.1.68 mkdir -p .ssh
+
+# Copy pub key to remote server
+cat .ssh/id_rsa.pub | ssh jiatao@192.168.1.68 'cat >> .ssh/authorized_keys'
+```
