@@ -4,10 +4,15 @@
 
 1. Install Debian Distro. Remember to create a new user and enable system util and ssh. Partition the main disk if necessary
 2. Configure router for the fixed ip address of the new linux box
-3. ssh into the new Linux box, 
-    - https://openmediavault.readthedocs.io/en/5.x/installation/on_debian.html
-    - reboot
- 4. Update and install the OMV extras
+3. ssh into the new Linux box. Follow instruction here https://openmediavault.readthedocs.io/en/5.x/installation/on_debian.html to install
+    > if you get this error `omv-confdbadm command not found` then do this:
+    
+    ```bash
+    export PATH=$PATH:/usr/sbin
+    omv-confdbadm populate
+    ```
+4. Reboot
+5. Install the OMV extras
     - `wget -O - https://github.com/OpenMediaVault-Plugin-Developers/packages/raw/master/install | bash`
     
 ## Use WebGui Tool    
