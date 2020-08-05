@@ -1,4 +1,4 @@
-# How to install and config OMV
+# How to Install and Configure OpenMediaVault
 
 ## Initial Setup
 
