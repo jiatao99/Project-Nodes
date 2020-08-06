@@ -21,7 +21,7 @@
 2. Network settings -> Interfaces, setup DNS server
 3. Update management -> Update
 4. OMV-Extras -> Install Docker and Portainers
-5. Plugins -> Install plugins: AutoShutdown, Remote Mount, RootFS Share, ResetPermissions, Symbolic Links
+5. Plugins -> Install plugins: SFTP, AutoShutdown, Remote Mount, RootFS Share, ResetPermissions, Symbolic Links
  
 ## Setup Dockers
  
@@ -43,21 +43,7 @@ services:
     volumes:
       - /srv/disk1/appdata/nginxproxy:/config
  ```
- 3. Install SFTP
- ```
- ---
-version: "2"
 
-services:
-  sftp:
-    image: atmoz/sftp
-    container_name: sftp
-    volumes:
-        - /srv/disk1/ftp:/home/jiatao
-    ports:
-        - "2222:22"
-    command: {userName}:{Password}:{UID}:{GID}
- ```
  4. Code Server
  ```
  ---
