@@ -22,8 +22,8 @@
 sudo nano /etc/apt/sources.list
 apt-get update
 ```
-  - for ```intel-microcode``` error: ```sudo apt-get install intel-microcode```
-  - for possible missing ```rtl_nic/rtl8125a-3.fw``` error: 
+  - for ```TSC_DEADLINE disabled due to Errata; please update microcode to version: 0x25``` error: ```sudo apt-get install intel-microcode```
+  - for ```possible missing rtl_nic/rtl8125a-3.fw``` error: 
     ```
     cd /lib/firmware/rtl_nic
     wget https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/plain/rtl_nic/rtl8125a-3.fw
