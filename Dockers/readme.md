@@ -15,6 +15,22 @@
 5. Install the OMV extras
     - `wget -O - https://github.com/OpenMediaVault-Plugin-Developers/packages/raw/master/install | bash`
     
+## Fix Debian Dependency Hardware Issue
+
+1. Add *contrib non-free* in apt source list
+```bash
+sudo nano /etc/apt/sources.list
+apt-get update
+```
+  - for ```intel-microcode``` error: ```sudo apt-get install intel-microcode```
+  - for possible missing ```rtl_nic/rtl8125a-3.fw``` error: 
+    ```
+    cd /lib/firmware/rtl_nic
+    wget /etc/conf.d/wireless-regdomplain/rtl_nic/rtl8125a-3.fw
+    update-initramfs -u
+    ```
+2. To check stutus, run ```sudo dmesg```
+    
 ## Use WebGui Tool    
 
 1. General setting: change port and admin password
