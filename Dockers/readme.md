@@ -30,7 +30,10 @@ apt-get update
     update-initramfs -u
     ```
 2. To check stutus, run ```sudo dmesg```
-    
+
+> For ```firmware: failed to load regulatory.db (-2)```: it is a wireless card. Ignore for now
+> for ```failed to load ar3k/ramps_0x31010000_40.dfu (-2)```: it is a bluetooth card. Ignore for now
+
 ## Use WebGui Tool    
 
 1. General setting: change port and admin password
