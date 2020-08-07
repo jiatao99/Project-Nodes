@@ -26,7 +26,7 @@ apt-get update
   - for possible missing ```rtl_nic/rtl8125a-3.fw``` error: 
     ```
     cd /lib/firmware/rtl_nic
-    wget /etc/conf.d/wireless-regdomplain/rtl_nic/rtl8125a-3.fw
+    wget https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/plain/rtl_nic/rtl8125a-3.fw
     update-initramfs -u
     ```
 2. To check stutus, run ```sudo dmesg```
