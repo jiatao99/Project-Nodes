@@ -100,3 +100,32 @@ cat .ssh/id_rsa.pub | ssh {user}@{server} 'cat >> .ssh/authorized_keys'
 # test
 ssh {user}@{server}
 ```
+
+5. Setup Wildcard SSL Certificate
+
+Install certbot. Switch to root `sudo su`
+
+```
+apt-get install certbot python-certbot-nginx
+apt-get install python3-certbot-dns-cloudflare
+
+mkdir /etc/letsencrypt
+nano /etc/letsencrypt/cloudflare.ini
+```
+
+Paste the following into it
+```
+# Cloudflare API token used by Certbot
+# dns_cloudflare_api_token = TryThisTokenMethodFirst
+
+# Cloudflare API credentials used by Certbot
+dns_cloudflare_email = your_cloudflare_email@gmail.com
+dns_cloudflare_api_key = your_api_key
+```
+
+```
+certbot certonly  --dns-cloudflare --dns-cloudflare-credentials /etc/letsencrypt/cloudflare.ini -d yourrootdomainname.com -d wildcard.yourrootdomainname.com
+certbot renew --dry-run
+```
+
+
