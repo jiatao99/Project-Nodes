@@ -124,7 +124,13 @@ dns_cloudflare_api_key = your_api_key
 ```
 
 ```
-certbot certonly  --dns-cloudflare --dns-cloudflare-credentials /etc/letsencrypt/cloudflare.ini -d yourrootdomainname.com -d wildcard.yourrootdomainname.com
+certbot certonly  \
+    --dns-cloudflare \
+    --dns-cloudflare-credentials /etc/letsencrypt/cloudflare.ini \
+    --server https://acme-v02.api.letsencrypt.org/directory \
+    -d '*.yourdomainname.com' \
+    -d 'yourdomainname.com'
+    
 certbot renew --dry-run
 ```
 
