@@ -41,7 +41,7 @@ apt-get update
 3. Update management -> Update
 4. OMV-Extras -> Install Docker and Portainers
 5. Plugins -> Install plugins: SFTP, AutoShutdown, Remote Mount, RootFS Share, ResetPermissions, Symbolic Links
- 
+
 ## Setup Dockers
  
  1. Change main web gui port (do NOT use port 80) and password
@@ -78,12 +78,66 @@ services:
       - UMASK=022
       - TZ=America/New-York
     volumes:
-      - /srv/data/appdata/codeserver:/config
+      - /docker/appdata/codeserver:/config
       - /srv/data:/data
     ports:
       - 8430:8443
     restart: unless-stopped
 ```
+
+
+## Install Code Server
+
+You can also setup code server as a regular installation. Here is the instruction:
+
+```bash
+# define a variable
+CS_VERSION="3.4.1"
+mkdir ~/code-server &&  cd ~/code-server
+wget https://github.com/cdr/code-server/releases/download/$CS_VERSION/code-server-$CS_VERSION-linux-x86_64.tar.gz
+tar -xzvf ode-server-$CS_VERSION-linux-x86_64.tar.gz
+rm code-server-$CS_VERSION-linux-x86_64.tar.gz
+mv code-server-$CS_VERSION-linux-x86_64 /usr/lib/code-server
+cd .. && rm -r code-server/
+```
+
+We have put the source code(bin) in correct folder. We need to create a folder to store code server configuration file (save as docker volume)
+```bash
+ln -s /usr/lib/code-server/code-server /usr/bin/code-server
+mkdir /docker/appdata/codeserver
+```
+
+We need to create a deamon service to auto start the code server
+
+```
+nano /lib/systemd/system/code-server.service
+```
+
+And copy the following and save the data
+```
+[Unit]
+Description=code-server
+After=nginx.service
+
+[Service]
+Type=simple
+Environment=PASSWORD=your_password
+ExecStart=/usr/bin/code-server --bind-addr 127.0.0.1:8430 --user-data-dir /docker/appdata/codeserver --auth password
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+```
+> Double check the port and user-data-dir to match your system. Also modify `your_password` to your desired password !important
+
+We are almost there
+```
+systemctl start code-server
+
+systemctl status code-server  # get status
+# systemctl stop code-server  # stop the server
+```
+
 
 4. Setup SSH 
 
