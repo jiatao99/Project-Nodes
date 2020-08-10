@@ -128,6 +128,7 @@ Restart=always
 [Install]
 WantedBy=multi-user.target
 ```
+> --bind-addr: replace with your server's local ip address(access from LAN) or 0.0.0.0 (any address, not secure)
 > Double check the port and user-data-dir to match your system. Also modify `your_password` to your desired password !important
 
 We are almost there
