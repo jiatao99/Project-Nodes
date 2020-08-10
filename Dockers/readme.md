@@ -88,7 +88,9 @@ services:
 
 ## Install Code Server
 
-You can also setup code server as a regular installation. Here is the instruction:
+You can also setup code server as a regular installation. The benifit to install in the local file system is that you can use the Visual Studio Code to test docker build using docker file.
+
+Here is the instruction:
 
 ```bash
 # define a variable
