@@ -42,53 +42,9 @@ apt-get update
 4. OMV-Extras -> Install Docker and Portainers
 5. Plugins -> Install plugins: SFTP, AutoShutdown, Remote Mount, RootFS Share, ResetPermissions, Symbolic Links
 
-## Setup Dockers
- 
- 1. Change main web gui port (do NOT use port 80) and password
- 2. Install Nginx Proxy Manager
- ```
-version: '2'
-services:
-  app:
-    image: jlesage/nginx-proxy-manager
-    container_name: nginx-proxy
-    environment:
-      - USER_ID=1000
-      - GROUP_ID=1000
-    ports:
-      - '80:8080'
-      - '8181:8181'
-      - '443:4443'
-    volumes:
-      - /srv/disk1/appdata/nginxproxy:/config
- ```
-
- 4. Code Server
- ```
- ---
-version: "2.1"
-services:
-  code-server:
-    image: linuxserver/code-server
-    container_name: code-server
-    environment:
-      - PUID=0.   # use root:root to avoid permission issue
-      - PGID=0
-      - PASSWORD=  ## your strong password to login into the web gui tool
-      - UMASK=022
-      - TZ=America/New-York
-    volumes:
-      - /docker/appdata/codeserver:/config
-      - /srv/data:/data
-    ports:
-      - 8430:8443
-    restart: unless-stopped
-```
-
-
 ## Install Code Server
 
-You can also setup code server as a regular installation. The benifit to install in the local file system is that you can use the Visual Studio Code to test docker build using docker file.
+You can also setup code server as a regular installation. The benifit to install in the local file system is that you can use the Visual Studio Code to test docker build
 
 Here is the instruction:
 
@@ -142,7 +98,7 @@ systemctl status code-server  # get status
 ```
 
 
-4. Setup SSH 
+## Setup SSH 
 
 ```bash
 # generate rsa private, public key pair and save it under .ssh folder (mac/linux)
@@ -158,14 +114,21 @@ cat .ssh/id_rsa.pub | ssh {user}@{server} 'cat >> .ssh/authorized_keys'
 ssh {user}@{server}
 ```
 
-5. Setup Wildcard SSL Certificate
+## Setup Wildcard SSL Certificate
 
-Install certbot. Switch to root `sudo su`
+There are a lot of tools that can create Letsencrypt SSL certificate. If your ISP does NOT block port 80, skip this instruction. Othereise, you have to use DNS challenge to request a free SSL certificate. This document use cloudflare.com as DNS name server.
 
+1. Install certbot. 
+
+Switch to root `sudo su`
 ```
 apt-get install certbot python-certbot-nginx
 apt-get install python3-certbot-dns-cloudflare
+```
 
+2. Create an Ini File
+
+```
 mkdir /etc/letsencrypt
 nano /etc/letsencrypt/cloudflare.ini
 ```
@@ -180,6 +143,8 @@ dns_cloudflare_email = your_cloudflare_email@gmail.com
 dns_cloudflare_api_key = your_api_key
 ```
 
+3. Create Certificate and Test
+
 ```
 certbot certonly  \
     --dns-cloudflare \
@@ -191,4 +156,25 @@ certbot certonly  \
 certbot renew --dry-run
 ```
 
+## Setup Dockers
+ 
+ 1. Change OpenMediaVault web gui port (do NOT use port 80) and password
+ 2. Install Nginx Proxy Manager
+ 
+ ```
+version: '2'
+services:
+  app:
+    image: jlesage/nginx-proxy-manager
+    container_name: nginx-proxy
+    environment:
+      - USER_ID=1000
+      - GROUP_ID=1000
+    ports:
+      - '80:8080'
+      - '8181:8181'
+      - '443:4443'
+    volumes:
+      - /srv/disk1/appdata/nginxproxy:/config
+ ```
 
