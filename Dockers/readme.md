@@ -93,7 +93,7 @@ You can also setup code server as a regular installation. The benifit to install
 Here is the instruction:
 
 ```bash
-# define a variable
+# define a variable. Goto https://github.com/cdr/code-server/releases/ to find the version you want to install
 CS_VERSION="3.4.1"
 mkdir ~/code-server &&  cd ~/code-server
 wget https://github.com/cdr/code-server/releases/download/$CS_VERSION/code-server-$CS_VERSION-linux-x86_64.tar.gz
