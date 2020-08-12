@@ -53,7 +53,7 @@ Here is the instruction:
 CS_VERSION="3.4.1"
 mkdir ~/code-server &&  cd ~/code-server
 wget https://github.com/cdr/code-server/releases/download/$CS_VERSION/code-server-$CS_VERSION-linux-x86_64.tar.gz
-tar -xzvf ode-server-$CS_VERSION-linux-x86_64.tar.gz
+tar -xzvf code-server-$CS_VERSION-linux-x86_64.tar.gz
 rm code-server-$CS_VERSION-linux-x86_64.tar.gz
 mv code-server-$CS_VERSION-linux-x86_64 /usr/lib/code-server
 cd .. && rm -r code-server/
