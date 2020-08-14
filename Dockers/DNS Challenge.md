@@ -39,3 +39,6 @@ dns_cloudflare_api_key = YOUR_API_KEY_IN_CLOUDFLARE
 > CloudFlare does NOT support free domain like .ml; .tk; .ga etc
 >
 > You can register those free domain name at www.freenom.com
+> Cheap place to register your domain: https://porkbun.com
+>
+> After registration, you can transfer your domain name lookup provider to www.cloudflare.com for free
